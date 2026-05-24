@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: shedlock-demo
+
+  # ── R2DBC (reactive DB access) ──────────────────────────────────────────────
+  r2dbc:
+    url: r2dbc:h2:mem:///taskdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+
+  # ── JDBC datasource — used ONLY for schema.sql initialisation ───────────────
+  # Spring Boot's SQL initialiser runs over JDBC before R2DBC connections open.
+  datasource:
+    url: jdbc:h2:mem:taskdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  sql:
+    init:
+      mode: always               # run schema.sql on every startup
+
+  h2:
+    console:
+      enabled: true              # http://localhost:8080/h2-console
+      path: /h2-console
+
+# ── Task processing ─────────────────────────────────────────────────────────
+task:
+  scheduler:
+    thread-pool-size: 4          # worker threads for blocking provision work
+    batch-size: 10               # tasks picked per scheduler tick
+
+logging:
+  level:
+    com.demo.shedlock: DEBUG
+    net.javacrumbs.shedlock: INFO
+    io.r2dbc: WARN

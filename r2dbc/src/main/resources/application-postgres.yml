@@ -1,0 +1,29 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://db-host:5432/shedlock_demo
+    username: engine
+    password: ${DB_PASSWORD}
+    pool:
+      initial-size: 2
+      max-size: 10
+      max-idle-time: 30m
+
+  datasource:
+    url: jdbc:postgresql://db-host:5432/shedlock_demo
+    driver-class-name: org.postgresql.Driver
+    username: engine
+    password: ${DB_PASSWORD}
+
+  # sql:
+  #   init:
+  #     mode: always
+
+task:
+  scheduler:
+    thread-pool-size: 4
+    batch-size: 10
+
+logging:
+  level:
+    com.demo.shedlock: DEBUG
+    net.javacrumbs.shedlock: INFO

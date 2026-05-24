@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.demo</groupId>
+    <groupId>com.demo.jpa</groupId>
     <artifactId>shedlock-demo</artifactId>
     <version>1.0.0</version>
     <name>shedlock-demo</name>
