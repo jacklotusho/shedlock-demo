@@ -127,3 +127,18 @@ JDBC URL: `jdbc:h2:mem:taskdb`
 2. Override `execute()`, call `triggerNextTask()` if needed
 3. Add `case N -> new YourThread(task, taskService)` in `ProvisionThreadFactory`
 4. That's it — no scheduler changes needed
+
+## Testing 
+```bash
+# 10 requests (default)
+./test_tasks.sh
+
+# 20 requests
+./test_tasks.sh 20
+
+# 20 requests on custom port
+./test_tasks.sh 20 localhost:9090
+
+# 15 requests + watch progress live until all 4 steps complete
+./test_tasks.sh 15 localhost:8080 true
+```
