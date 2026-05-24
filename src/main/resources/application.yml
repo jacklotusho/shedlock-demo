@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: shedlock-demo
+
+  datasource:
+    url: jdbc:h2:mem:taskdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  sql:
+    init:
+      mode: always                 # run schema.sql on startup — creates shedlock table
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop        # Hibernate creates Task table; schema.sql creates shedlock
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true                # http://localhost:8080/h2-console
+      path: /h2-console
+
+# ── Task processing config ───────────────────────────────────────────────────
+task:
+  scheduler:
+    pick-interval-ms: 5000         # TaskPickupScheduler polls every 5s
+    thread-pool-size: 4            # 4 worker threads per pod
+    batch-size: 10                 # max tasks picked per scheduler run
+
+logging:
+  level:
+    com.demo.shedlock: DEBUG
+    net.javacrumbs.shedlock: INFO

@@ -1,0 +1,57 @@
+/bin/
+/target/
+/build/
+build.properties
+*/src/main/resources/application-local.yml
+mae-fyre/src/test/resources/metalob/
+mae-fyre/src/test/resources/*.properties
+mae-saga/src/test/resources/sl*.properties
+mae-vpc/src/test/resources/*.properties
+mae-onecloud/src/test/resources/*.properties
+mae-provision/src/test/resources/*.json
+mae-awx/src/test/resources/*.json
+/.settings/
+/.scannerwork/
+/sonar-project.properties
+upload-dir
+
+# Maven
+src/main/gen-src/**
+target/
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/
+.noai
+
+# eclipse project file
+.settings/
+.classpath
+.factorypath
+.project
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+#code
+.vscode/
+
+# OS
+.DS_Store
+
+# Misc
+*.swp
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
+/.apt_generated/
+/.apt_generated_tests/
+

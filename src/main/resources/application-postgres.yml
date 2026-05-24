@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: shedlock-demo
+
+  datasource:
+    url: jdbc:postgresql://db-host:5432/shedlock_demo
+    driver-class-name: org.postgresql.Driver
+    username: engine
+    password: ${DB_PASSWORD}
+
+    # HikariCP connection pool
+    hikari:
+      pool-name: ShedLockHikari
+      minimum-idle: 2
+      maximum-pool-size: 10
+      idle-timeout: 30000          # 30s
+      connection-timeout: 20000    # 20s
+      max-lifetime: 1800000        # 30min
+      connection-test-query: SELECT 1
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate           # schema managed by 02_schema.sql — no auto-create
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC           # store all timestamps in UTC
+
+  # Disable H2 console (not used with Postgres)
+  h2:
+    console:
+      enabled: false
+
+# ── Task processing config ────────────────────────────────────────────────────
+task:
+  scheduler:
+    pick-interval-ms: 5000
+    thread-pool-size: 4
+    batch-size: 10
+
+logging:
+  level:
+    com.demo.shedlock: DEBUG
+    net.javacrumbs.shedlock: INFO
+    com.zaxxer.hikari: INFO
